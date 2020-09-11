@@ -27,7 +27,7 @@ void *workerThreadFunc(void *arg)
 
       shared_var++;
       printf("ThreadID: %d, shared_var: %d\n",easyID, shared_var);
-      //remove to see behavior where single thread increments up to ten
+      //remove sleep to see behavior where single thread increments up to ten
       sleep(1);
 
 
