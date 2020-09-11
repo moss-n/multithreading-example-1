@@ -32,7 +32,7 @@ void *workerThreadFunc(void *arg)
 
 
     }
-    printf("Global Var Value: %d, Static Var Value: %d, Local Var Value: %d, Thread ID: %ld, easyID: %d \n",
+    printf("BARRIER Var Value: %d, Static Var Value: %d, Local Var Value: %d, Thread ID: %ld, easyID: %d \n",
     BARRIER, shared_var, ++local_var, *tid, easyID);
 }
 
