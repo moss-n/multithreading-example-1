@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
-int GLOBAL = 0;
+int BARRIER = 0;
 
 typedef struct {
 
@@ -15,7 +15,7 @@ typedef struct {
 
 void *workerThreadFunc(void *arg)
 {
-    while (GLOBAL == 0){
+    while (BARRIER == 0){
 
     }
     ThreadArgs * arg_p = (ThreadArgs *) arg;
@@ -24,13 +24,15 @@ void *workerThreadFunc(void *arg)
     static int shared_var = 0;
     int local_var = 0;
     while (shared_var < 10){
-      sleep(1); //remove to see behavior where single thread increments up to ten
+
       shared_var++;
+      //remove to see behavior where single thread increments up to ten
+      sleep(1);
 
       printf("ThreadID: %d, shared_var: %d\n",easyID, shared_var);
     }
     printf("Global Var Value: %d, Static Var Value: %d, Local Var Value: %d, Thread ID: %ld, easyID: %d \n",
-    GLOBAL, shared_var, ++local_var, *tid, easyID);
+    BARRIER, shared_var, ++local_var, *tid, easyID);
 }
 
 int main()
@@ -49,8 +51,9 @@ int main()
 	     pthread_create(args->tid, NULL, workerThreadFunc, (void *)args);
 
         };
+        //Remove sleep to see thread behavior act sequentially
         sleep(1);
-        GLOBAL = 1;
+        BARRIER = 1;
 
     pthread_exit(NULL);
     return 0;
