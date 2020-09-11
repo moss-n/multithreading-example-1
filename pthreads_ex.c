@@ -26,10 +26,11 @@ void *workerThreadFunc(void *arg)
     while (shared_var < 10){
 
       shared_var++;
+      printf("ThreadID: %d, shared_var: %d\n",easyID, shared_var);
       //remove to see behavior where single thread increments up to ten
       sleep(1);
 
-      printf("ThreadID: %d, shared_var: %d\n",easyID, shared_var);
+
     }
     printf("Global Var Value: %d, Static Var Value: %d, Local Var Value: %d, Thread ID: %ld, easyID: %d \n",
     BARRIER, shared_var, ++local_var, *tid, easyID);
